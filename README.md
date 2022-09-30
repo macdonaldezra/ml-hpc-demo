@@ -1,6 +1,6 @@
 # ML HPC
 
-This repository has been created as part of a demonstration for how to run Machine Learning Workloads on Compute Canada's High Performance Computing Cluster presented at the 2022 ACM International Conference on Mobile Human-Computer Interaction.
+This repository has been created as part of a presentation for how to run Machine Learning Workloads on Compute Canada's High Performance Computing Cluster presented at the 2022 ACM International Conference on Mobile Human-Computer Interaction.
 
 ## Build PyTorch Container
 
@@ -42,12 +42,14 @@ singularity shell --nv --pwd /code --bind <path_to_cwd>/ml_hpc:/code/ml_hpc ml_h
 
 ##### 3. Train Example Model
 
+Below commands should be executed while inside of a shell session on a Singularity container.
+
 ```bash
 # Activate virtual environment with dependencies installed
-. ml-env/bin/activate
-cd ml_hpc/
+Singularity> . ml-env/bin/activate
+Singularity> cd ml_hpc/
 # train model found in __main__.py file in ml_model/
-python -m ml_model
+Singularity> python -m ml_model
 ```
 
 ### Additional Resources
