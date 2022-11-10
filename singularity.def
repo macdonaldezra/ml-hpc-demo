@@ -1,9 +1,8 @@
 Bootstrap: docker
-From: nvidia/cuda:11.2.0-cudnn8-devel-ubuntu18.04
+From: nvidia/cuda:11.7.1-cudnn8-devel-ubuntu20.04
 
 # Set environment variables that are avialable during %post stage and runtime
 %environment
-    export VIRTUAL_ENV="/code/ml-env"
     export HOME="/code"
 
 # Copy over files from host to container
@@ -13,7 +12,7 @@ From: nvidia/cuda:11.2.0-cudnn8-devel-ubuntu18.04
 
 %post
 	# Downloads the latest package lists
-	apt-get update -y -qq
+    apt-get update -y -qq
     apt-get install -y -qq software-properties-common
     add-apt-repository ppa:deadsnakes/ppa
 
@@ -34,7 +33,7 @@ From: nvidia/cuda:11.2.0-cudnn8-devel-ubuntu18.04
 
     cd /code
     # Configure virtual environment and install pip and wheel
-    python -m venv ml-env
+    python -m venv /ml-env
     . ml-env/bin/activate
     python -m pip install --upgrade pip
     python -m pip install wheel
@@ -44,5 +43,5 @@ From: nvidia/cuda:11.2.0-cudnn8-devel-ubuntu18.04
     pip install -r requirements.txt --extra-index-url https://download.pytorch.org/whl/cu113
 
 %runscript
-    . ml-env/bin/activate
+    . /ml-env/bin/activate
     python -m ml_model
