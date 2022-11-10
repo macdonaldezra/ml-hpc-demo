@@ -11,7 +11,7 @@ From: nvidia/cuda:11.7.1-cudnn8-devel-ubuntu20.04
     requirements.txt /code/
 
 %post
-	# Downloads the latest package lists
+    # Downloads the latest package lists
     apt-get update -y -qq
     apt-get install -y -qq software-properties-common
     add-apt-repository ppa:deadsnakes/ppa
