@@ -4,6 +4,10 @@ From: nvidia/cuda:11.7.1-cudnn8-devel-ubuntu20.04
 # Set environment variables that are avialable during %post stage and runtime
 %environment
     export HOME="/code"
+    # May need to specify relevant time zone for your region depending on whether or not
+    # Singularity detects your host's time zone correctly
+    # Time Zone names can be found here: https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+    export TZ="Canada/Pacific"
 
 # Copy over files from host to container
 %files
@@ -34,7 +38,7 @@ From: nvidia/cuda:11.7.1-cudnn8-devel-ubuntu20.04
     cd /code
     # Configure virtual environment and install pip and wheel
     python -m venv /ml-env
-    . ml-env/bin/activate
+    . /ml-env/bin/activate
     python -m pip install --upgrade pip
     python -m pip install wheel
 
